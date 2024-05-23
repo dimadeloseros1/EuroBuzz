@@ -1,0 +1,101 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+.container-fluid {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center;
+}
+
+.form-fields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.start-finish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-btn {
+    margin: 10px;
+}
+
+.numbers {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+ul > li {
+    list-style-type: none;
+    display: inline-block;
+    width: 10%;
+    border: 1px solid #ccc;
+    margin: 3px;
+}
+
+.btn {
+    border: 2px solid #d9dedc;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #e6e8e7;
+    color: #f47023
+}
+
+.three {
+    color: #fd746e;
+}
+
+.five {
+    color: #b4932d
+}
+
+.eurofins {
+    color: #4359db
+}
+
+/*
+    Media Query to make it responsive for smaller screens
+*/
+@media screen and (max-width: 768px) {
+    ul > li {
+        display: block; 
+        width: auto; 
+    }
+    
+
+    .startFinish-form {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="">
+        <p>Do you wish to input a custom start and end number? If no start and end number is specified the default numbers will be 0 and 100</p>
+    </div>
+    <div class="form-fields">
+        <form class="startFinish-form">
+            <label for="start">Start</label>
+            <input class="start" type="number" name="start" value="1" />
+            <label for="end">End</label>
+            <input class="end" type="number" name="end" value="100" />
+            <div class="main-btn">
+                <button type="submit" class="btn">Generate Numbers</button>
+            </div>
+        </form>
+    </div>
+    <div class="numbers-field">
+        <div class="numbers"></div>
+    </div>
+</div>

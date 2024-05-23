@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Coding-Task-Int/1.0.0": {
+        "runtime": {
+          "Coding-Task-Int.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Coding-Task-Int/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
