@@ -1,18 +1,19 @@
-﻿const form = document.querySelector('.startFinish-form');
-const resultDiv = document.querySelector('.numbers');
+﻿const form = document.querySelector(".startFinish-form");
+const resultDiv = document.querySelector(".numbers");
 
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
+// Event listener that listens for any change uppon the button being pressed
+form.addEventListener("submit", function (event) {
+    event.preventDefault(); // This code prevents the page being refreshed uppon the event listener firing
 
-    const start = parseInt(document.querySelector('.start').value);
-    const end = parseInt(document.querySelector('.end').value);
+    const start = parseInt(document.querySelector(".start").value);
+    const end = parseInt(document.querySelector(".end").value);
 
     const numbers = generatingNums(start, end); // Generate numbers
     displayingNums(numbers); // Display numbers
 });
 
 // Function to generate the numbers
-function generatingNums(start, end) {
+const generatingNums = (start, end) => {
     let ul = document.createElement("ul");
 
     for (let i = start; i <= end; i++) {
@@ -29,7 +30,7 @@ function generatingNums(start, end) {
             span.textContent = "Five";
             span.className = "five";
         } else {
-            span.textContent = i + ' ';
+            span.textContent = i;
         }
 
         li.appendChild(span);
@@ -40,7 +41,7 @@ function generatingNums(start, end) {
 }
 
 // Function to display the numbers
-function displayingNums(ul) {
+const displayingNums = (ul) => {
     resultDiv.innerHTML = "";
-    resultDiv.appendChild(ul); // Append ul to resultDiv
+    resultDiv.appendChild(ul); 
 }
