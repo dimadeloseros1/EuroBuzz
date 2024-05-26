@@ -1,18 +1,46 @@
 ﻿const form = document.querySelector(".startFinish-form");
 const resultDiv = document.querySelector(".numbers");
+const numbersField = document.querySelector(".numbers-field");
 
-// Event listener that listens for any change uppon the button being pressed
-form.addEventListener("submit", function (event) {
-    event.preventDefault(); // This code prevents the page being refreshed uppon the event listener firing
+// Event listener that listens for any change upon the button being pressed
+form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // This code prevents the page being refreshed uppon the event listener being fired
 
+    // The next two lines parse the value from each
     const start = parseInt(document.querySelector(".start").value);
     const end = parseInt(document.querySelector(".end").value);
 
-    const numbers = generatingNums(start, end); // Generate numbers
-    displayingNums(numbers); // Display numbers
+    try {
+        const fetchedNums = await fetchingNums(start, end)
+        const numbers = await generatingNums(fetchedNums.start, fetchedNums.end); // Generate numbers
+        displayingNums(numbers); // Displays numbers
+        numbersField.classList.add("active");  // adding a classlist for css code whenever the button is being pressed
+    } catch (error) {
+        console.error("Error fetching numbers: ", error);
+    }
+
 });
 
-// Function to generate the numbers
+// Function which fetches the numbers and stores them in the data base
+const fetchingNums = async (start, end) => {
+    const response = await fetch("/Home/AddNumbers", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({ Start: start, End: end })
+    });
+
+    if (!response.ok) {
+        throw new Error("Response was not ok " + response.status);
+    }
+
+    return await response.json();
+}
+
+
+// Function which generates the numbers
 const generatingNums = (start, end) => {
     let ul = document.createElement("ul");
 
@@ -43,5 +71,5 @@ const generatingNums = (start, end) => {
 // Function to display the numbers
 const displayingNums = (ul) => {
     resultDiv.innerHTML = "";
-    resultDiv.appendChild(ul); 
+    resultDiv.appendChild(ul);
 }
