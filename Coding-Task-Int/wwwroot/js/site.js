@@ -1,27 +1,50 @@
-﻿const form = document.querySelector(".startFinish-form");
+﻿import { generatedNums } from "./GeneratingNums.js"
+
+const form = document.querySelector(".startFinish-form");
 const resultDiv = document.querySelector(".numbers");
 const numbersField = document.querySelector(".numbers-field");
 
-// Event listener that listens for any change upon the button being pressed
-form.addEventListener("submit", async function (event) {
-    event.preventDefault(); // This code prevents the page being refreshed uppon the event listener being fired
+const errorSpan = document.createElement("span");
+errorSpan.className = "error-span";
 
-    // The next two lines parse the value from each
+// Event listener that listens for any change upon the button being pressed
+form.addEventListener("submit", async (event) => {
+
+    // This code prevents the page being refreshed uppon the event listener being fired
+    event.preventDefault(); 
+
+    // The next two lines convert 
     const start = parseInt(document.querySelector(".start").value);
     const end = parseInt(document.querySelector(".end").value);
 
+    // This condition checks whether the start number is equal or greater than end number
+    if (start >= end) {
+        errorSpan.textContent = "Start number cannot be the same or greater than End number";
+        form.prepend(errorSpan);
+        return; 
+    } else {
+        errorSpan.textContent = ""; 
+    }
+
+    // in this try catch block we orchestrate all the functions that we've created in this file and run them accordingly 
     try {
         const fetchedNums = await fetchingNums(start, end)
-        const numbers = await generatingNums(fetchedNums.start, fetchedNums.end); // Generate numbers
-        displayingNums(numbers); // Displays numbers
-        numbersField.classList.add("active");  // adding a classlist for css code whenever the button is being pressed
+
+        // Function exported from GeneratingNums file that takes care of generating numbers
+        const numbers = await generatedNums(fetchedNums.start, fetchedNums.end); 
+
+        // Displays numbers
+        displayingNums(numbers); 
+
+        // adding a class that is activated when the event is fired successfully 
+        numbersField.classList.add("active");  
     } catch (error) {
         console.error("Error fetching numbers: ", error);
     }
 
 });
 
-// Function which fetches the numbers and stores them in the data base
+// This function is in charge of sending data to the sever
 const fetchingNums = async (start, end) => {
     const response = await fetch("/Home/AddNumbers", {
         method: "POST",
@@ -40,36 +63,17 @@ const fetchingNums = async (start, end) => {
 }
 
 
-// Function which generates the numbers
-const generatingNums = (start, end) => {
+
+
+// Function which displays the numbers by creating DOM elements
+const displayingNums = (nums) => {
     let ul = document.createElement("ul");
-
-    for (let i = start; i <= end; i++) {
-        let span = document.createElement("span");
+    nums.forEach(numsObj => {
         let li = document.createElement("li");
-
-        if (i % 3 === 0 && i % 5 === 0) {
-            span.textContent = "Eurofins";
-            span.className = "eurofins";
-        } else if (i % 3 === 0) {
-            span.textContent = "Three";
-            span.className = "three";
-        } else if (i % 5 === 0) {
-            span.textContent = "Five";
-            span.className = "five";
-        } else {
-            span.textContent = i;
-        }
-
-        li.appendChild(span);
+        li.textContent = numsObj.text;
+        li.className = numsObj.className;
         ul.appendChild(li);
-    }
-
-    return ul;
-}
-
-// Function to display the numbers
-const displayingNums = (ul) => {
+    })
     resultDiv.innerHTML = "";
     resultDiv.appendChild(ul);
 }

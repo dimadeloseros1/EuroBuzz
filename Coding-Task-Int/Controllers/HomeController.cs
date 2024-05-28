@@ -9,12 +9,10 @@ namespace Coding_Task_Int.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly Context _context;
 
-        public HomeController(ILogger<HomeController> logger, Context context)
+        public HomeController(Context context)
         {
-            _logger = logger;
             _context = context;
         }
 
@@ -45,14 +43,19 @@ namespace Coding_Task_Int.Controllers
 
             if (numbers == null || numbers.Start > numbers.End)
             {
-                return BadRequest("Invalid range");
+                return BadRequest(new { message = "Invalid starting number: Start number should be less than End number"});
             }
 
+            // TimesStamp sets the current date and time of the numbers property
             numbers.TimeStamp = DateTime.Now;
 
+            // Adds the numbers object to the Numbers to the Numbers DbSet property from Context
             _context.Numbers.Add(numbers);
+
+            // We save the changes asynchronously. without the SaveChangesAsync we won't be able to save the data in the data base
             await _context.SaveChangesAsync();
 
+            // We return the Json object containing the start number and end number 
             return Json(new { start = numbers.Start, end = numbers.End });
         }
     }

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\dimad\\OneDrive\\Desktop\\C# Players Guide\\Coding-Task\\Coding-Task-Int\\wwwroot\\js\\GeneratingNums.js",
+      "PackagePath": "staticwebassets\\js\\GeneratingNums.js"
+    },
+    {
       "Id": "C:\\Users\\dimad\\OneDrive\\Desktop\\C# Players Guide\\Coding-Task\\Coding-Task-Int\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

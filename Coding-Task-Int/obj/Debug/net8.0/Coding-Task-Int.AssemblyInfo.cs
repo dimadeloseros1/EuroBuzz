@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Coding-Task-Int")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+275fcf4919d35d51f525e1489ba0ad3c22222903")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9de8e51c0cdc5dad5e3b8112f5e025827df96677")]
 [assembly: System.Reflection.AssemblyProductAttribute("Coding-Task-Int")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Coding-Task-Int")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
